@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { PolygonDto } from "../types";
 
-const BASE_URL = "http://localhost:5092/api/polygons";
+const BASE_URL = "https://localhost:7115/api/polygons";
 
 export const polygonService = {
   getAll: () => axios.get<PolygonDto[]>(BASE_URL),

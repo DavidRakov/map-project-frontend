@@ -15,7 +15,7 @@ This is the frontend for my map project. Its built with React and TypeScript and
 Before you run this you need to have these installed:
 
 - [Node.js](https://nodejs.org/) (version 18 or higher)
-- The backend server running at `http://localhost:5092` — see the backend repo to set it up
+- The backend server running at `https://localhost:7115` — see the backend repo to set it up
 
 ## How to run after cloning
 
@@ -69,5 +69,5 @@ npm run preview  # preview the production build locally
 
 ## Notes
 
-- The app talks to the backend at `http://localhost:5092` — if the server is not running you will see errors when trying to save or load data
+- The app talks to the backend at `https://localhost:7115` — if the server is not running you will see errors when trying to save or load data
 - Your browser might warn about the self-signed certificate on the backend, just click "proceed anyway"
