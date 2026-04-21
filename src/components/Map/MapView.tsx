@@ -5,7 +5,6 @@ import { addPendingCoordinate } from "../../store/slices/polygonSlice";
 import {
   addPendingObject,
   cancelPlacingObject,
-  clearFlyTarget,
 } from "../../store/slices/objectSlice";
 import PolygonLayer from "./PolygonLayer";
 import ObjectLayer from "./ObjectLayer";
@@ -25,24 +24,10 @@ const GeolocateUser = () => {
         map.setView([latitude, longitude], 14);
       },
       () => {
-        console.warn("לא ניתן לקבל מיקום, משתמשים בברירת מחדל");
+        console.warn("Geolocation unavailable, using default");
       }
     );
   }, [map]);
-
-  return null;
-};
-
-const FlyToHandler = () => {
-  const dispatch = useAppDispatch();
-  const map = useMap();
-  const flyTarget = useAppSelector((s) => s.objects.flyTarget);
-
-  useEffect(() => {
-    if (!flyTarget) return;
-    map.flyTo(flyTarget, Math.max(map.getZoom(), 15));
-    dispatch(clearFlyTarget());
-  }, [flyTarget, map, dispatch]);
 
   return null;
 };
@@ -88,7 +73,6 @@ const MapView = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <GeolocateUser />
-      <FlyToHandler />
       <DrawingHandler />
       <PolygonLayer />
       <ObjectLayer />

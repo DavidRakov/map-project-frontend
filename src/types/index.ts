@@ -1,11 +1,13 @@
+export type Coordinates = [number, number];
+
 export interface GeoJsonGeometry {
   type: "Polygon";
-  coordinates: number[][][];
+  coordinates: Coordinates[][];
 }
 
 export interface GeoJsonPoint {
   type: "Point";
-  coordinates: number[];
+  coordinates: Coordinates;
 }
 
 export interface PolygonDto {
@@ -20,5 +22,3 @@ export interface MapObjectDto {
   symbolType: "marker" | "jeep";
   geometry: GeoJsonPoint;
 }
-
-export default {};

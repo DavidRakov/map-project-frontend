@@ -5,6 +5,7 @@ import {
   saveObjects,
   removeObject,
 } from "../thunks/objectThunks";
+import type { SymbolType } from "../../constants/symbolTypes";
 
 interface ObjectState {
   items: MapObjectDto[];
@@ -13,7 +14,7 @@ interface ObjectState {
   loading: boolean;
   error: string | null;
   isPlacingObject: boolean;
-  placingTemplate: { name: string; symbolType: "marker" | "jeep" } | null;
+  placingTemplate: { name: string; symbolType: SymbolType } | null;
   flyTarget: [number, number] | null;
 }
 
@@ -44,7 +45,10 @@ const objectSlice = createSlice({
     clearError: (state) => {
       state.error = null;
     },
-    startPlacingObject: (state, action: PayloadAction<{ name: string; symbolType: "marker" | "jeep" }>) => {
+    startPlacingObject: (
+      state,
+      action: PayloadAction<{ name: string; symbolType: SymbolType }>
+    ) => {
       state.isPlacingObject = true;
       state.placingTemplate = action.payload;
     },
@@ -61,7 +65,10 @@ const objectSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchObjects.pending, (state) => { state.loading = true; state.error = null; })
+      .addCase(fetchObjects.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(fetchObjects.fulfilled, (state, action) => {
         state.items = action.payload;
         state.loading = false;
@@ -70,7 +77,10 @@ const objectSlice = createSlice({
         state.loading = false;
         state.error = action.error.message ?? "Failed to load objects";
       })
-      .addCase(saveObjects.pending, (state) => { state.loading = true; state.error = null; })
+      .addCase(saveObjects.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(saveObjects.fulfilled, (state, action) => {
         state.items = action.payload;
         state.pendingObjects = [];
@@ -80,7 +90,10 @@ const objectSlice = createSlice({
         state.loading = false;
         state.error = action.error.message ?? "Failed to save objects";
       })
-      .addCase(removeObject.pending, (state) => { state.loading = true; state.error = null; })
+      .addCase(removeObject.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(removeObject.fulfilled, (state, action) => {
         state.items = action.payload;
         state.selectedId = null;

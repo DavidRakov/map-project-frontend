@@ -1,7 +1,7 @@
 import axios from "axios";
 import { type MapObjectDto } from "../types";
 
-const BASE_URL = "https://localhost:7115/api/objects";
+const BASE_URL = "http://localhost:5092/api/objects";
 
 export const objectService = {
   getAll: () => axios.get<MapObjectDto[]>(BASE_URL),
